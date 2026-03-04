@@ -13,7 +13,6 @@ A robust, persistent Model Context Protocol (MCP) server for Google Tasks with s
 ## Prerequisites
 
 - Node.js >= 20.0.0
-- NPM or PNPM
 - Google Cloud Console account
 
 ## Step-by-Step Guide
@@ -39,36 +38,18 @@ To use this MCP server, you need to create OAuth2 credentials from Google Cloud.
    - Click **Create**.
 7. You will get a **Client ID** and a **Client Secret**. Save them!
 
-### Step 2: Installation
+### Step 2: Configure Claude / Your MCP Client
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/kokohbudi/mcp-googletasks-vrob.git
-   cd mcp-googletasks-vrob
-   ```
+Since the package is published on NPM, you can run it directly using `npx` without downloading the code manually.
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Build the project:
-   ```bash
-   npm run build
-   ```
-
-### Step 3: Configure Claude / Your MCP Client
-
-For Claude to use this MCP server, you must add the configuration to your Claude settings file (e.g., `claude_desktop_config.json` or via the Claude CLI).
-
-Add the following configuration, making sure to replace `<YOUR_CLIENT_ID>` and `<YOUR_CLIENT_SECRET>` with the credentials you obtained in Step 1:
+Add the following configuration to your Claude Desktop settings file (`claude_desktop_config.json`):
 
 ```json
 {
   "mcpServers": {
     "google-tasks-vrob": {
-      "command": "node",
-      "args": ["/absolute/path/to/mcp-googletasks-vrob/build/index.js"],
+      "command": "npx",
+      "args": ["-y", "mcp-googletasks-vrob"],
       "env": {
         "GOOGLE_CLIENT_ID": "<YOUR_CLIENT_ID>",
         "GOOGLE_CLIENT_SECRET": "<YOUR_CLIENT_SECRET>",
@@ -78,11 +59,12 @@ Add the following configuration, making sure to replace `<YOUR_CLIENT_ID>` and `
   }
 }
 ```
-*Note: Change `/absolute/path/to/...` to the actual path where this repository is located on your local machine.*
 
-### Step 4: Authentication & Usage
+*Note: Replace `<YOUR_CLIENT_ID>` and `<YOUR_CLIENT_SECRET>` with the credentials you obtained in Step 1.*
 
-1. Run your AI app/Claude. This MCP server will be loaded automatically.
+### Step 3: Authentication & Usage
+
+1. Run your AI app/Claude Desktop. This MCP server will be loaded automatically.
 2. For the very first usage, ask the AI (Claude) to log in using a prompt like:
    > "Please authenticate with Google Tasks"
 3. Claude will call the `authenticate` tool and provide you with a URL.
@@ -91,6 +73,23 @@ Add the following configuration, making sure to replace `<YOUR_CLIENT_ID>` and `
    - "List all my task lists."
    - "Create a new task named 'Weekly Groceries' and put it in the 'Personal' list."
    - "Mark the 'Weekly Groceries' task as completed."
+
+## Alternative: Local Development Installation
+
+If you want to modify the code or run it locally from the source:
+
+```bash
+git clone https://github.com/kokohbudi/mcp-googletasks-vrob.git
+cd mcp-googletasks-vrob
+npm install
+npm run build
+```
+
+Then in your Claude config, point it to the local build:
+```json
+"command": "node",
+"args": ["/absolute/path/to/mcp-googletasks-vrob/build/index.js"],
+```
 
 ## List of Tools Available
 
