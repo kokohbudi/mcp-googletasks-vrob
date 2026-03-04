@@ -1,6 +1,6 @@
 {
   "name": "mcp-googletasks-vrob",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "description": "Robust Google Tasks MCP Server with persistent OAuth2 tokens",
   "main": "build/index.js",
   "type": "module",

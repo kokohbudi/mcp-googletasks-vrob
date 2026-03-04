@@ -169,7 +169,7 @@ async function init(): Promise<void> {
 
 // ─── MCP Server ────────────────────────────────────────────────────────────
 
-const server = new McpServer({ name: "google-tasks-vrob", version: "2.0.0" });
+const server = new McpServer({ name: "google-tasks-vrob", version: "1.0.0" });
 const tasksApi = google.tasks({ version: "v1", auth: oauth2Client });
 
 // ─── Shared helpers ─────────────────────────────────────────────────────────
