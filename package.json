@@ -1,0 +1,25 @@
+{
+  "name": "mcp-googletasks-vrob",
+  "version": "2.0.0",
+  "description": "Robust Google Tasks MCP Server with persistent OAuth2 tokens",
+  "main": "build/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc && chmod 755 build/index.js",
+    "dev": "tsc --watch",
+    "start": "node build/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.22.0",
+    "google-auth-library": "^10.5.0",
+    "googleapis": "^166.0.0",
+    "zod": "^3.25.76"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "typescript": "^5.6.3"
+  }
+}
